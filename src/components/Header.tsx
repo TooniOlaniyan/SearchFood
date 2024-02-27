@@ -2,7 +2,14 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <div>
+      <div>
+        <img src="/assets/headerLogo.svg" alt="logo" />
+      </div>
+      <div>
+
+      </div>
+    </div>
   )
 }
 
