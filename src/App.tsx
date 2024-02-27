@@ -6,10 +6,12 @@ import Home from './pages/Home';
 function App() {
 
   return (
-    <div>
-      <Header/>
-      <Home/>
-      <Footer/>
+    <div className="w-full">
+      <Header />
+      <div className='p-10'>
+        <Home />
+      </div>
+      <Footer />
     </div>
   );
 }
