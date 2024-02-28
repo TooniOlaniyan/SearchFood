@@ -13,7 +13,7 @@ const Header = () => {
         <input
           type="text"
           placeholder="Search for restaurants and food"
-          className="py-2 w-[20rem] px-4  bg-primary-grey rounded-2xl focus:outline-none"
+          className="py-2 md:w-[20rem] w-[10rem] text-sm  px-4  bg-primary-grey rounded-2xl focus:outline-none"
         />
         <button type="submit" className="">
           <img src="/assets/search.svg" alt="Search Icon" className="w-4 h-4" />
