@@ -3,3 +3,11 @@ export interface ButtonProps {
   icon?: string;
   onClick: () => void;
 }
+
+export interface MealResponse {
+  meals: Meal[];
+}
+
+export interface Meal {
+  strArea: string;
+}
