@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { areas } from "../constant";
 
@@ -12,7 +13,13 @@ const FilterByArea = () => {
     );
   };
   return (
-    <div className="w-[25rem] h-[25rem] flex flex-col  gap-10 bg-white shadow-lg rounded-3xl mt-5 p-10 overflow-y-scroll">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      exit={{ opacity: 0 }}
+      className="w-[15rem] md:w-[25rem] h-[25rem] flex flex-col  gap-10 bg-white shadow-lg rounded-3xl mt-5 p-10 overflow-y-scroll"
+    >
       <div className="flex flex-wrap w-full gap-10">
         {areas.map((area) => (
           <div key={area} className="flex items-center gap-5 w-full">
@@ -37,7 +44,7 @@ const FilterByArea = () => {
       >
         Apply
       </button>
-    </div>
+    </motion.div>
   );
 };
 

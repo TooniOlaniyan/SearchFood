@@ -4,10 +4,12 @@ export interface ButtonProps {
   onClick: () => void;
 }
 
-export interface MealResponse {
+export interface MealResult {
   meals: Meal[];
 }
 
 export interface Meal {
-  strArea: string;
+  strMeal: string;
+  strMealThumb: string;
+  idMeal: string;
 }
