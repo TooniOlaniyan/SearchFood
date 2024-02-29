@@ -1,5 +1,5 @@
-export const fetchMeals = async () => {
-  const url = "https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian";
+export const fetchMeals = async (area:string) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
 
   const res = await fetch(url);
   const result = await res.json();

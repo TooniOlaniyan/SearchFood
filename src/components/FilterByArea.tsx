@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { areas } from "../constant";
+import { fetchMeals } from "../utils";
 
 const FilterByArea = () => {
-  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
+  const [selectedArea, setSelectedArea] = useState<string>('');
 
   const handleAreaToggle = (area: string) => {
-    setSelectedAreas((prevSelectedAreas) =>
-      prevSelectedAreas.includes(area)
-        ? prevSelectedAreas.filter((selectedArea) => selectedArea !== area)
-        : [...prevSelectedAreas, area]
-    );
+    setSelectedArea(area)
   };
+  const handleFilterByArea = async () => {
+    const filteredMeal = await fetchMeals(selectedArea)
+    console.log(filteredMeal)
+  }
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,9 +29,9 @@ const FilterByArea = () => {
               id={area}
               name="area"
               value={area}
-              checked={selectedAreas.includes(area)}
+              checked={selectedArea.includes(area)}
               onChange={() => handleAreaToggle(area)}
-              className="appearance-none w-4 h-4 border border-primary-orange rounded-full focus:outline-none focus:border-primary-orange"
+              className="cursor-pointer w-4 h-4 border accent-primary-orange"
             />
             <label htmlFor={area} className="text-gray-500">
               {area}
@@ -39,7 +40,7 @@ const FilterByArea = () => {
         ))}
       </div>
       <button
-        onClick={() => {}}
+        onClick={() => {handleFilterByArea()}}
         className="py-2 px-6 bg-primary-orange text-white rounded-2xl"
       >
         Apply

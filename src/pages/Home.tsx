@@ -11,14 +11,14 @@ import { fetchMeals } from "../utils";
 const Home = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
-  const [selectedMeal, setSelectedMeal] = useState(null);
+  const [showMealDetails, setShowMealDetails] = useState(null);
   const [meals, setMeals] = useState<MealResult>({meals:[]});
   
 
   useEffect(() => {
-    const showIndianFood = async () => {
+    const showFoodItems = async () => {
       try {
-        const indianFood = await fetchMeals();
+        const indianFood = await fetchMeals('Indian');
 
         setMeals(indianFood);
       } catch (error) {
@@ -26,7 +26,7 @@ const Home = () => {
       }
     };
 
-    showIndianFood();
+    showFoodItems();
   }, []);
 
   const handleClick = (index: number) => {
@@ -44,7 +44,7 @@ const Home = () => {
     }
   };
   const handleMealClick = () => {
-    setSelectedMeal("burger");
+    setShowMealDetails("burger");
   };
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 relative">
@@ -78,10 +78,10 @@ const Home = () => {
             />
           ))}
       </div>
-      {selectedMeal && (
+      {showMealDetails && (
         <MealDetails
-          meal={selectedMeal}
-          onClose={() => setSelectedMeal(null)}
+          meal={showMealDetails}
+          onClose={() => setShowMealDetails(null)}
         />
       )}
     </div>

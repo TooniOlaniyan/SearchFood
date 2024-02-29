@@ -20,9 +20,9 @@ const MealDetails = ({ meal, onClose }: any) => {
           >
             <h2 className="text-2xl font-bold mb-4">{meal}</h2>
             <motion.button
-              initial={{ y: -50, opacity: 0 }}
+              initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration:0.5, ease: "easeInOut" }}
+              transition={{ delay: 0.2, duration:0.7, ease: "easeInOut" }}
               exit={{ y: 100, opacity: 0 }}
               className="bg-primary-orange text-white px-4 py-2 rounded-lg absolute md:top-8 md:right-8"
               onClick={onClose}
