@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import Button from "../components/shared/Button";
 import { buttonText } from "../constant";
 import FilterByArea from "../components/FilterByArea";
@@ -7,14 +7,14 @@ import MealCard from "../components/MealCard";
 import MealDetails from "../components/MealDetails";
 import { useFoodContext } from "../context/FoodContext";
 import FoodSkeleton from "@/components/FoodSkeleton";
-
+import { fetchMealsDetails } from "@/utils";
 
 const Home = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
-  const [showMealDetails, setShowMealDetails] = useState(null);
-  const {meals , isLoading} = useFoodContext()
-  
+  const [showMealDetails, setShowMealDetails] = useState(false);
+  const [mealDetails, setMealDetails] = useState(null);
+  const { meals, isLoading } = useFoodContext();
 
   const handleClick = (index: number) => {
     switch (index) {
@@ -30,12 +30,19 @@ const Home = () => {
         break;
     }
   };
-  const handleMealClick = () => {
-    setShowMealDetails("burger");
+  const handleShowMealDetails = async (mealId: any) => {
+    setShowMealDetails(true);
+    try {
+      const mealDetailsResult = await fetchMealsDetails(mealId);
+      if (mealDetailsResult.meals) {
+        setMealDetails(mealDetailsResult);
+      }
+    } catch (error) {
+      console.log("error");
+    }
   };
 
   const skeletonItems = Array.from({ length: 11 }, (_, index) => index);
-
 
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 relative">
@@ -67,14 +74,16 @@ const Home = () => {
               key={index}
               name={meal.strMeal}
               img={meal.strMealThumb}
-              onMealClick={handleMealClick}
+              mealId={meal.idMeal}
+              onMealClick={() => handleShowMealDetails(meal.idMeal)}
             />
           ))}
       </div>
       {showMealDetails && (
         <MealDetails
-          meal={showMealDetails}
-          onClose={() => setShowMealDetails(null)}
+          // meal={showMealDetails}
+          mealDetails={mealDetails}
+          onClose={() => setShowMealDetails(false)}
         />
       )}
     </div>

@@ -38,10 +38,10 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false)
     }
   };
+  
 
   useEffect(() => {
     handleFetchMeals(selectedArea);
-    console.log(meals)
   }, [selectedArea]);
 
   return (
