@@ -8,6 +8,7 @@ interface FoodContextType {
   selectedArea: string;
   setSelectedArea: SetSelectedArea;
   meals: MealResult;
+  isLoading:boolean
   setMeals: React.Dispatch<React.SetStateAction<MealResult>>;
   fetchMeals: (area: string) => Promise<void>;
 }
@@ -16,6 +17,7 @@ const FoodContext = createContext<FoodContextType>({
   selectedArea: "",
   setSelectedArea: () => {},
   meals: { meals: [] },
+  isLoading: false,
   setMeals: () => {},
   fetchMeals: async () => {},
 });
@@ -23,13 +25,17 @@ const FoodContext = createContext<FoodContextType>({
 export const FoodProvider = ({ children }: { children: ReactNode }) => {
   const [selectedArea, setSelectedArea] = useState("Indian");
   const [meals, setMeals] = useState<MealResult>({ meals: [] });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFetchMeals = async (area: string) => {
+    setIsLoading(true)
     try {
       const fetchedMeals = await fetchMeals(area);
       setMeals(fetchedMeals);
     } catch (error) {
       console.error("Error fetching meals:", error);
+    }finally{
+        setIsLoading(false)
     }
   };
 
@@ -41,6 +47,7 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
   return (
     <FoodContext.Provider
       value={{
+        isLoading,
         selectedArea,
         setSelectedArea,
         meals,

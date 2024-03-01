@@ -2,22 +2,21 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useFoodContext } from "../context/FoodContext";
 import { areas } from "../constant";
+import { FilterByAreaProps } from "@/types";
 
 
-const FilterByArea = () => {
+const FilterByArea = ({ setOpenDropDown }: FilterByAreaProps) => {
   const [mySelectedArea, setMySelectedArea] = useState("");
-  const {setSelectedArea , selectedArea , fetchMeals} = useFoodContext()
+  const { setSelectedArea, fetchMeals } = useFoodContext();
 
   const handleAreaToggle = (area: string) => {
-    setMySelectedArea(area)
+    setMySelectedArea(area);
   };
   const handleFilterByArea = async () => {
-    setSelectedArea(mySelectedArea)
-    await fetchMeals(mySelectedArea)
-    console.log('clicked')
-    
-    
-  }
+    setSelectedArea(mySelectedArea);
+    setOpenDropDown(false);
+    await fetchMeals(mySelectedArea);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}

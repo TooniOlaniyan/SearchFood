@@ -6,13 +6,14 @@ import Sort from "../components/Sort";
 import MealCard from "../components/MealCard";
 import MealDetails from "../components/MealDetails";
 import { useFoodContext } from "../context/FoodContext";
+import FoodSkeleton from "@/components/FoodSkeleton";
 
 
 const Home = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(null);
-  const {meals} = useFoodContext()
+  const {meals , isLoading} = useFoodContext()
   
 
   const handleClick = (index: number) => {
@@ -32,6 +33,10 @@ const Home = () => {
   const handleMealClick = () => {
     setShowMealDetails("burger");
   };
+
+  const skeletonItems = Array.from({ length: 11 }, (_, index) => index);
+
+
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 relative">
       <h1 className="font-extrabold text-lg mb-6">
@@ -48,12 +53,14 @@ const Home = () => {
         ))}
       </div>
       <div className="absolute top-32 md:top-24 md:left-0 z-10">
-        {openDropdown && <FilterByArea />}
+        {openDropdown && <FilterByArea setOpenDropDown={setOpenDropdown} />}
       </div>
       <div className="absolute top-32 md:top-24 left-0 z-10">
         {openSortDropdown && <Sort />}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
+        {(isLoading || meals.meals.length === 0) &&
+          skeletonItems.map((item) => <FoodSkeleton key={item} />)}
         {meals.meals &&
           meals.meals.map((meal, index) => (
             <MealCard

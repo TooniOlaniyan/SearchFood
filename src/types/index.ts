@@ -13,3 +13,7 @@ export interface Meal {
   strMealThumb: string;
   idMeal: string;
 }
+
+export interface FilterByAreaProps {
+  setOpenDropDown: React.Dispatch<React.SetStateAction<boolean>>;
+}
