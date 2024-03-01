@@ -1,17 +1,22 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useFoodContext } from "../context/FoodContext";
 import { areas } from "../constant";
-import { fetchMeals } from "../utils";
+
 
 const FilterByArea = () => {
-  const [selectedArea, setSelectedArea] = useState<string>('');
+  const [mySelectedArea, setMySelectedArea] = useState("");
+  const {setSelectedArea , selectedArea , fetchMeals} = useFoodContext()
 
   const handleAreaToggle = (area: string) => {
-    setSelectedArea(area)
+    setMySelectedArea(area)
   };
   const handleFilterByArea = async () => {
-    const filteredMeal = await fetchMeals(selectedArea)
-    console.log(filteredMeal)
+    setSelectedArea(mySelectedArea)
+    await fetchMeals(mySelectedArea)
+    console.log('clicked')
+    
+    
   }
   return (
     <motion.div
@@ -29,7 +34,6 @@ const FilterByArea = () => {
               id={area}
               name="area"
               value={area}
-              checked={selectedArea.includes(area)}
               onChange={() => handleAreaToggle(area)}
               className="cursor-pointer w-4 h-4 border accent-primary-orange"
             />
@@ -40,7 +44,7 @@ const FilterByArea = () => {
         ))}
       </div>
       <button
-        onClick={() => {handleFilterByArea()}}
+        onClick={handleFilterByArea}
         className="py-2 px-6 bg-primary-orange text-white rounded-2xl"
       >
         Apply

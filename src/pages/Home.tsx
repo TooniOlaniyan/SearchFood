@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Button from "../components/shared/Button";
 import { buttonText } from "../constant";
 import FilterByArea from "../components/FilterByArea";
 import Sort from "../components/Sort";
 import MealCard from "../components/MealCard";
 import MealDetails from "../components/MealDetails";
-import { MealResult } from "../types";
-import { fetchMeals } from "../utils";
+import { useFoodContext } from "../context/FoodContext";
+
 
 const Home = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(null);
-  const [meals, setMeals] = useState<MealResult>({meals:[]});
+  const {meals} = useFoodContext()
   
-
-  useEffect(() => {
-    const showFoodItems = async () => {
-      try {
-        const indianFood = await fetchMeals('Indian');
-
-        setMeals(indianFood);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    showFoodItems();
-  }, []);
 
   const handleClick = (index: number) => {
     switch (index) {
