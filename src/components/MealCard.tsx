@@ -1,7 +1,7 @@
 import { generateRandomRating , fetchMealsDetails } from "../utils";
 
 const MealCard = ({ onMealClick, img, name , mealId }: any) => {
-  const rating = generateRandomRating(1.0, 5.0);
+  const rating = generateRandomRating(3.0, 5.0);
 
     const handleMealClick = async () => {
       try {

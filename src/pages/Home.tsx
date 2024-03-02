@@ -42,7 +42,7 @@ const Home = () => {
     }
   };
 
-  const skeletonItems = Array.from({ length: 11 }, (_, index) => index);
+  const skeletonItems = Array.from({ length: 10 }, (_, index) => index);
 
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 relative">
@@ -79,6 +79,9 @@ const Home = () => {
             />
           ))}
       </div>
+      <button className="bg-primary-orange text-white font-bold py-2 w-[40%] md:px-4  md:w-[20%] rounded-2xl">
+        Load More
+      </button>
       {showMealDetails && (
         <MealDetails
           // meal={showMealDetails}

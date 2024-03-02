@@ -1,7 +1,8 @@
 export const fetchMeals = async (area:string) => {
-  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}&_limit=50000`;
   const res = await fetch(url);
   const result = await res.json();
+  console.log(result)
   return result;
 };
 export const fetchMealsDetails = async (id:number) => {
