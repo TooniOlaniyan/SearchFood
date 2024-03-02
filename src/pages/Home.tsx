@@ -14,7 +14,13 @@ const Home = () => {
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [mealDetails, setMealDetails] = useState(null);
-  const { meals, isLoading } = useFoodContext();
+  const [loadMoreData, setLoadMoreData] = useState(true);
+  const { meals, setMeals, currentPage, isLoading } = useFoodContext();
+
+  const mealsPerPage = 15;
+  const startIndex = (currentPage - 1) * mealsPerPage;
+  const displayedMeals =
+    meals.meals && meals.meals.slice(startIndex, startIndex + mealsPerPage);
 
   const handleClick = (index: number) => {
     switch (index) {
@@ -29,6 +35,9 @@ const Home = () => {
       default:
         break;
     }
+  };
+  const handleLoadMore = async () => {
+
   };
   const handleShowMealDetails = async (mealId: any) => {
     setShowMealDetails(true);
@@ -68,8 +77,8 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
         {(isLoading || meals.meals.length === 0) &&
           skeletonItems.map((item) => <FoodSkeleton key={item} />)}
-        {meals.meals &&
-          meals.meals.map((meal, index) => (
+        {displayedMeals &&
+          displayedMeals.map((meal, index) => (
             <MealCard
               key={index}
               name={meal.strMeal}
@@ -79,12 +88,16 @@ const Home = () => {
             />
           ))}
       </div>
-      <button className="bg-primary-orange text-white font-bold py-2 w-[40%] md:px-4  md:w-[20%] rounded-2xl">
-        Load More
-      </button>
+      {loadMoreData && (
+        <button
+          className="bg-primary-orange text-white font-bold py-2 w-[40%] md:px-4  md:w-[20%] rounded-2xl"
+          onClick={handleLoadMore}
+        >
+          Load More
+        </button>
+      )}
       {showMealDetails && (
         <MealDetails
-          // meal={showMealDetails}
           mealDetails={mealDetails}
           onClose={() => setShowMealDetails(false)}
         />
