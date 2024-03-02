@@ -15,8 +15,6 @@ interface FoodContextType {
   setSelectedArea: SetSelectedArea;
   meals: MealResult;
   isLoading: boolean;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
   setMeals: React.Dispatch<React.SetStateAction<MealResult>>;
   fetchMeals: (area: string) => Promise<void>;
 }
@@ -28,8 +26,7 @@ const FoodContext = createContext<FoodContextType>({
   isLoading: false,
   setMeals: () => {},
   fetchMeals: async () => {},
-  currentPage: 1,
-  setCurrentPage: (page: number) => {},
+
 
 });
 
@@ -37,7 +34,7 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
   const [selectedArea, setSelectedArea] = useState("Indian");
   const [meals, setMeals] = useState<MealResult>({ meals: [] });
   const [isLoading, setIsLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  
 
   const handleFetchMeals = async (area: string) => {
     setIsLoading(true);
@@ -64,8 +61,6 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
         meals,
         setMeals,
         fetchMeals: handleFetchMeals,
-        currentPage,
-        setCurrentPage,
       }}
     >
       {children}

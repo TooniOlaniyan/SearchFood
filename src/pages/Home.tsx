@@ -14,13 +14,8 @@ const Home = () => {
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [mealDetails, setMealDetails] = useState(null);
-  const [loadMoreData, setLoadMoreData] = useState(true);
-  const { meals, setMeals, currentPage, isLoading } = useFoodContext();
-
-  const mealsPerPage = 15;
-  const startIndex = (currentPage - 1) * mealsPerPage;
-  const displayedMeals =
-    meals.meals && meals.meals.slice(startIndex, startIndex + mealsPerPage);
+  const [visible, setvisible] = useState(10);
+  const { meals, isLoading } = useFoodContext();
 
   const handleClick = (index: number) => {
     switch (index) {
@@ -37,7 +32,7 @@ const Home = () => {
     }
   };
   const handleLoadMore = async () => {
-
+    setvisible((prevState) => prevState + 10);
   };
   const handleShowMealDetails = async (mealId: any) => {
     setShowMealDetails(true);
@@ -77,25 +72,29 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
         {(isLoading || meals.meals.length === 0) &&
           skeletonItems.map((item) => <FoodSkeleton key={item} />)}
-        {displayedMeals &&
-          displayedMeals.map((meal, index) => (
-            <MealCard
-              key={index}
-              name={meal.strMeal}
-              img={meal.strMealThumb}
-              mealId={meal.idMeal}
-              onMealClick={() => handleShowMealDetails(meal.idMeal)}
-            />
-          ))}
+        {meals.meals &&
+          meals.meals
+            .slice(0, visible)
+            .map((meal, index) => (
+              <MealCard
+                key={index}
+                name={meal.strMeal}
+                img={meal.strMealThumb}
+                mealId={meal.idMeal}
+                onMealClick={() => handleShowMealDetails(meal.idMeal)}
+              />
+            ))}
       </div>
-      {loadMoreData && (
+
+      {visible < meals.meals.length && (
         <button
-          className="bg-primary-orange text-white font-bold py-2 w-[40%] md:px-4  md:w-[20%] rounded-2xl"
+          className="bg-primary-orange text-white font-bold py-2 w-[40%] md:px-4 md:w-[20%] rounded-2xl"
           onClick={handleLoadMore}
         >
           Load More
         </button>
       )}
+
       {showMealDetails && (
         <MealDetails
           mealDetails={mealDetails}
