@@ -12,7 +12,7 @@ const MealDetails = ({ onClose, mealDetails }: any) => {
         exit={{ opacity: 0 }}
       >
         <motion.div
-          className="bg-white w-[95%] h-[90%] md:w-[50rem] md:h-[40rem] rounded-2xl relative"
+          className="bg-white w-[95%] h-[90%] md:w-[80%] md:h-[90%] 2xl:w-[80%] 2xl:h-[90%] rounded-2xl relative"
           initial={{ scale: 0.3, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -22,12 +22,12 @@ const MealDetails = ({ onClose, mealDetails }: any) => {
             mealDetails.meals.map((detail: any, index: any) => (
               <div
                 key={index}
-                className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between p-6"
+                className="flex flex-col gap-5 md:gap-10 md:flex-row md:justify-between p-6"
               >
-                <div className="w-full md:w-1/2 flex flex-row md:flex-col gap-5 items-start justify-center">
-                  <div className="">
+                <div className="w-full  md:w-1/2 flex flex-row md:flex-col gap-5 md:gap-10 items-start justify-start">
+                  <div className="w-[10rem] h-[20%] md:h-[40%] md:w-full">
                     <img
-                      className="w-[10rem] h-[10rem] md:w-[20rem]  md:h-[25rem] rounded-xl"
+                      className=" rounded-xl md:h-full w-full object-cover"
                       src={detail.strMealThumb}
                       alt=""
                     />
@@ -49,9 +49,9 @@ const MealDetails = ({ onClose, mealDetails }: any) => {
                     </button>
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 h-full flex flex-col gap-3 justify-center">
+                <div className="w-full md:w-1/2 flex flex-col gap-3 md:gap-0">
                   <h1 className="font-extrabold text-xl">Cook It!!</h1>
-                  <div className="h-[10rem] md:h-[23rem] overflow-y-scroll">
+                  <div className="h-[10rem] md:h-[50%] overflow-y-scroll">
                     <p className="text-gray-500 text-[12px] text-justify h-full">
                       {detail.strInstructions}
                     </p>
@@ -61,7 +61,10 @@ const MealDetails = ({ onClose, mealDetails }: any) => {
                       Watch on YouTube
                     </p>
                     <p className="text-[10px] font-extrabold text-gray-500">
-                      <a href={detail.strYoutube} target="_blank"> {detail.strYoutube}</a>
+                      <a href={detail.strYoutube} target="_blank">
+                        {" "}
+                        {detail.strYoutube}
+                      </a>
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">
