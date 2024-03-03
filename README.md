@@ -1,30 +1,34 @@
-# React + TypeScript + Vite
+# Food Menu Webpage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a landing page for a Food Menu App built using React and Typescript. It provides users with filters to sort food items by area, and includes a data grid with food items fetched from the MealDB API. The design, colors, and theme mimic the look of Swiggy for a cohesive user experience.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The main goal of this project is to create an engaging landing page for a Food Menu App using React. It features a header with a logo and search bar, filters section for sorting by area, food items section with a data grid, also displays the details of each food items and a footer. The application is fully responsive and compatible across various screen sizes.
 
-## Expanding the ESLint configuration
+## Key Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Header Section:** Includes a logo and search bar (non-functional).
+- **Filters Section:** Allows users to filter food items by area and sort alphabetically.
+- **Food Items Section (Data Grid):** Displays food items fetched from the MealDB API, with each item card containing an image, name, and ratings. Clicking on a food item opens a modal with additional details.
+- **Footer Section:** Balances the bottom of the webpage.
+- **API Reference:** [MealDB API](https://www.themealdb.com/api.php)
 
-- Configure the top-level `parserOptions` property like this:
+## Tools & Technology
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- React
+- Typescript,
+- Tailwind CSS,
+- State Contex API,
+- **Libraries:** ShadcnUi, FramerMotion
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## How to Use
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the development server using `npm start`.
+4. Access the application in your browser at `http://localhost:3000`.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
