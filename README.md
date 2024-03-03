@@ -22,6 +22,9 @@ The main goal of this project is to create an engaging landing page for a Food M
 - State Contex API,
 - **Libraries:** ShadcnUi, FramerMotion
 
+##Link to a video that shows the app functionalities
+-https://www.loom.com/share/bab95641969f482cb5d7e06210dd7499?sid=246700e4-0d3c-4f99-baac-173e3f136d59
+
 ## How to Use
 
 1. Clone the repository.
