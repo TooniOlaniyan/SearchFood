@@ -14,8 +14,8 @@ const Home = () => {
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [mealDetails, setMealDetails] = useState(null);
-  const [visible, setvisible] = useState(10);
-  const { meals, isLoading } = useFoodContext();
+ 
+  const { meals, isLoading , visible , setVisible } = useFoodContext();
 
   const handleClick = (index: number) => {
     switch (index) {
@@ -32,7 +32,7 @@ const Home = () => {
     }
   };
   const handleLoadMore = async () => {
-    setvisible((prevState) => prevState + 10);
+    setVisible((prevState) => prevState + 10);
   };
   const handleShowMealDetails = async (mealId: any) => {
     setShowMealDetails(true);

@@ -57,11 +57,11 @@ const MealDetails = ({ onClose, mealDetails }: any) => {
                     </p>
                   </div>
                   <div className="">
-                    <p className="font-bold text-xl text-primary-orange">
+                    <p className="font-bold text-md text-primary-orange">
                       Watch on YouTube
                     </p>
                     <p className="text-[10px] font-extrabold text-gray-500">
-                      {detail.strYoutube}
+                      <a href={detail.strYoutube} target="_blank"> {detail.strYoutube}</a>
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">

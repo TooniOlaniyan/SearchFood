@@ -17,6 +17,8 @@ interface FoodContextType {
   isLoading: boolean;
   setMeals: React.Dispatch<React.SetStateAction<MealResult>>;
   fetchMeals: (area: string) => Promise<void>;
+  visible: number;
+  setVisible: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FoodContext = createContext<FoodContextType>({
@@ -26,6 +28,8 @@ const FoodContext = createContext<FoodContextType>({
   isLoading: false,
   setMeals: () => {},
   fetchMeals: async () => {},
+  visible:10,
+  setVisible:() => {}
 
 
 });
@@ -34,6 +38,7 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
   const [selectedArea, setSelectedArea] = useState("Indian");
   const [meals, setMeals] = useState<MealResult>({ meals: [] });
   const [isLoading, setIsLoading] = useState(false);
+   const [visible, setVisible] = useState(10);
   
 
   const handleFetchMeals = async (area: string) => {
@@ -61,6 +66,8 @@ export const FoodProvider = ({ children }: { children: ReactNode }) => {
         meals,
         setMeals,
         fetchMeals: handleFetchMeals,
+        visible , 
+        setVisible
       }}
     >
       {children}

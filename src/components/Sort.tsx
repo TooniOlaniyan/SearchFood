@@ -2,11 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const Sort = () => {
-  const [selected, setselected] = useState<string>('')
-  // const handleSort = (e:any) => {
-  //   setselected(e.target.value)
-
-  // }
+  const [selected, setSelected] = useState<string>('')
+  const handleAreaToggle = (sortValue: string) => {
+    setSelected(sortValue);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,8 +21,7 @@ const Sort = () => {
             id="sort"
             name="sort"
             value="sort"
-            // checked={}
-            // onChange={() => handleSort()}
+            onChange={() => handleAreaToggle(selected)}
             className=" w-4 h-4 border border-primary-orange rounded-full focus:outline-none focus:border-primary-orange"
           />
           <label className="text-gray-500">Alphabetically (A-z)</label>

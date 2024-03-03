@@ -7,7 +7,7 @@ import { FilterByAreaProps } from "@/types";
 
 const FilterByArea = ({ setOpenDropDown }: FilterByAreaProps) => {
   const [mySelectedArea, setMySelectedArea] = useState("");
-  const { setSelectedArea, fetchMeals } = useFoodContext();
+  const { setSelectedArea, fetchMeals , setVisible } = useFoodContext();
 
   const handleAreaToggle = (area: string) => {
     setMySelectedArea(area);
@@ -15,6 +15,7 @@ const FilterByArea = ({ setOpenDropDown }: FilterByAreaProps) => {
   const handleFilterByArea = async () => {
     setSelectedArea(mySelectedArea);
     setOpenDropDown(false);
+    setVisible(10)
     await fetchMeals(mySelectedArea);
   };
   return (
