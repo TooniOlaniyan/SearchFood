@@ -14,8 +14,8 @@ const Home = () => {
   const [openSortDropdown, setOpenSortDropdown] = useState(false);
   const [showMealDetails, setShowMealDetails] = useState(false);
   const [mealDetails, setMealDetails] = useState(null);
- 
-  const { meals, isLoading , visible , setVisible } = useFoodContext();
+
+  const { meals, isLoading, visible, setVisible } = useFoodContext();
 
   const handleClick = (index: number) => {
     switch (index) {
@@ -69,7 +69,7 @@ const Home = () => {
       <div className="absolute top-32 md:top-24 left-0 z-10">
         {openSortDropdown && <Sort />}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4  gap-y-10">
         {(isLoading || meals.meals.length === 0) &&
           skeletonItems.map((item) => <FoodSkeleton key={item} />)}
         {meals.meals &&
