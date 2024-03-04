@@ -14,7 +14,7 @@ const MealCard = ({ onMealClick, img, name , mealId }: any) => {
   return (
     <div
       onClick={handleMealClick}
-      className="flex bg-white flex-col justify-center items-start cursor-pointer shadow-lg  rounded-3xl overflow-hidden"
+      className="flex bg-white flex-col justify-center items-start cursor-pointer shadow-lg hover:scale-105 ease-in-out duration-1000 hover:transition-transform  rounded-3xl overflow-hidden"
     >
       <div className="w-full h-full">
         <img className="object-contain w-full rounded-2xl" src={img} alt="meal" />
