@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState} from "react";
 import { useFoodContext } from "../context/FoodContext";
 import { areas } from "../constant";
 import { FilterByAreaProps } from "@/types";
